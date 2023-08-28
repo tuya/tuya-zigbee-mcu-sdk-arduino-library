@@ -33,7 +33,7 @@ TuyaUart::~TuyaUart(void)
 */
 void TuyaUart::seq_num_set(unsigned char seq_num)
 {
-   global_seq_num = seq_num;
+    global_seq_num = seq_num;
 }
 unsigned short TuyaUart::seq_num_get(void)
 {
@@ -46,7 +46,7 @@ unsigned short TuyaUart::seq_num_get(void)
 * @param[in] {void}
 * @return void
 */
-unsigned char  TuyaUart::get_queue_total_data(void)
+unsigned char TuyaUart::get_queue_total_data(void)
 {
     if(queue_total_data == 0)
     {

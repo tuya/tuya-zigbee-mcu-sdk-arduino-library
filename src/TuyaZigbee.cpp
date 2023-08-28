@@ -88,7 +88,7 @@ unsigned char TuyaZigbee::init(unsigned char *pid, unsigned char *mcu_ver)
 void TuyaZigbee::zigbee_uart_service(void)
 {
 
-    unsigned char ret;
+    unsigned char ret = 0;
     static unsigned short rx_in = 0;
     unsigned short offset = 0;
     unsigned short rx_value_len = 0;
@@ -183,8 +183,8 @@ void TuyaZigbee::data_handle(unsigned short offset)
     unsigned char cmd_type = 0;
     unsigned short total_len = 0, seq_num = 0;
     unsigned short dp_len;  
-  	unsigned char ret;
- 	unsigned short i;
+    unsigned char ret = 0;
+    unsigned short i;
 
     cmd_type = tuya_uart.zigbee_uart_rx_buf[offset + FRAME_TYPE];
 
@@ -357,7 +357,7 @@ unsigned char TuyaZigbee::data_point_handle(const unsigned char value[])
 {
     unsigned char dp_id, index;
     unsigned char dp_type;
-    unsigned char ret;
+    unsigned char ret = 0;
     unsigned short dp_len;
 
     dp_id = value[0];
@@ -458,7 +458,7 @@ void TuyaZigbee::get_mcu_zigbee_mode(void)
  */
 unsigned long TuyaZigbee::mcu_get_dp_download_data(unsigned char dpid, const unsigned char value[], unsigned short len)
 {
-    unsigned long ret;
+    unsigned long ret = 0;
     switch (download_cmd[get_dowmload_dpid_index(dpid)][1])
     {
     case DP_TYPE_BOOL:
@@ -488,7 +488,7 @@ unsigned long TuyaZigbee::mcu_get_dp_download_data(unsigned char dpid, const uns
  */
 unsigned char TuyaZigbee::mcu_dp_update(unsigned char dpid, const unsigned char value[], unsigned short len)
 {
-    unsigned char ret;
+    unsigned char ret = 0;
     switch (download_cmd[get_dowmload_dpid_index(dpid)][1])
     {
         case DP_TYPE_RAW:
@@ -524,7 +524,7 @@ unsigned char TuyaZigbee::mcu_dp_update(unsigned char dpid, const unsigned char 
 
 unsigned char TuyaZigbee::mcu_dp_update(unsigned char dpid, unsigned char value, unsigned short len)
 {
-    unsigned char ret;
+    unsigned char ret = 0;
     switch (download_cmd[get_dowmload_dpid_index(dpid)][1])
     {
         case DP_TYPE_BOOL:
@@ -551,7 +551,7 @@ unsigned char TuyaZigbee::mcu_dp_update(unsigned char dpid, unsigned char value,
 
 unsigned char TuyaZigbee::mcu_dp_update(unsigned char dpid, char value, unsigned short len)
 {
-    unsigned char ret;
+    unsigned char ret = 0;
     switch (download_cmd[get_dowmload_dpid_index(dpid)][1])
     {
         case DP_TYPE_BOOL:
@@ -578,7 +578,7 @@ unsigned char TuyaZigbee::mcu_dp_update(unsigned char dpid, char value, unsigned
 
 unsigned char TuyaZigbee::mcu_dp_update(unsigned char dpid, unsigned long value, unsigned short len)
 {
-    unsigned char ret;
+    unsigned char ret = 0;
     switch (download_cmd[get_dowmload_dpid_index(dpid)][1])
     {
         case DP_TYPE_BOOL:
@@ -605,7 +605,7 @@ unsigned char TuyaZigbee::mcu_dp_update(unsigned char dpid, unsigned long value,
 
 unsigned char TuyaZigbee::mcu_dp_update(unsigned char dpid, long value, unsigned short len)
 {
-    unsigned char ret;
+    unsigned char ret = 0;
     switch (download_cmd[get_dowmload_dpid_index(dpid)][1])
     {
         case DP_TYPE_BOOL:
@@ -632,7 +632,7 @@ unsigned char TuyaZigbee::mcu_dp_update(unsigned char dpid, long value, unsigned
 
 unsigned char TuyaZigbee::mcu_dp_update(unsigned char dpid, unsigned int value, unsigned short len)
 {
-    unsigned char ret;
+    unsigned char ret = 0;
     switch (download_cmd[get_dowmload_dpid_index(dpid)][1])
     {
         case DP_TYPE_BOOL:
@@ -659,7 +659,7 @@ unsigned char TuyaZigbee::mcu_dp_update(unsigned char dpid, unsigned int value, 
 
 unsigned char TuyaZigbee::mcu_dp_update(unsigned char dpid, int value, unsigned short len)
 {
-    unsigned char ret;
+    unsigned char ret = 0;
     switch (download_cmd[get_dowmload_dpid_index(dpid)][1])
     {
         case DP_TYPE_BOOL:
@@ -693,9 +693,9 @@ unsigned char TuyaZigbee::mcu_dp_update(unsigned char dpid, int value, unsigned 
  */
 void TuyaZigbee::mcu_network_start(void)
 {
-      unsigned short length = 0;
-      length =  tuya_uart.set_zigbee_uart_byte(length,1);
-      tuya_uart.zigbee_uart_write_frame(ZIGBEE_CFG_CMD,length);
+    unsigned short length = 0;
+    length =  tuya_uart.set_zigbee_uart_byte(length,1);
+    tuya_uart.zigbee_uart_write_frame(ZIGBEE_CFG_CMD,length);
 }
 
 
