@@ -63,7 +63,7 @@ unsigned char TuyaUart::get_queue_total_data(void)
 */
 void TuyaUart::uart_transmit_output(unsigned char value)
 {
-    Serial.write(value);
+    write(value);
 }
 
 /**
