@@ -51,9 +51,9 @@ TuyaZigbee::TuyaZigbee(SoftwareSerial *serial)
  */
 unsigned char TuyaZigbee::init(unsigned char *pid, unsigned char *mcu_ver)
 {
-    if (pid == NULL || mcu_ver == NULL)
+    if (pid == TY_NULL || mcu_ver == TY_NULL)
     {
-        return ERROR;
+        return TY_ERROR;
     }
 
     if (tuya_tools.my_strlen(pid) <= PID_LEN)
@@ -64,7 +64,7 @@ unsigned char TuyaZigbee::init(unsigned char *pid, unsigned char *mcu_ver)
     else
     {
         tuya_tools.my_memcpy(product_id, pid, PID_LEN);
-        return ERROR;
+        return TY_ERROR;
     }
 
     if (tuya_tools.my_strlen(mcu_ver) <= VER_LEN)
@@ -74,10 +74,10 @@ unsigned char TuyaZigbee::init(unsigned char *pid, unsigned char *mcu_ver)
     else
     {
         tuya_tools.my_memcpy(mcu_ver_value, mcu_ver, VER_LEN);
-        return ERROR;
+        return TY_ERROR;
     }
 
-    return SUCCESS;
+    return TY_SUCCESS;
 }
 
 /**
@@ -97,7 +97,7 @@ void TuyaZigbee::zigbee_uart_service(void)
     /* extract serial data */
     while(tuya_uart.available()) {
         ret = tuya_uart.uart_receive_input(tuya_uart.read());
-        if (ret != SUCCESS) {
+        if (ret != TY_SUCCESS) {
             break;
         }
     }
@@ -229,7 +229,7 @@ void TuyaZigbee::data_handle(unsigned short offset)
     
             ret = data_point_handle((unsigned char *)tuya_uart.zigbee_uart_rx_buf + offset + DATA_START + i);
 
-            if (SUCCESS == ret)
+            if (TY_SUCCESS == ret)
             {
                 //Send success
             }
@@ -370,7 +370,7 @@ unsigned char TuyaZigbee::data_point_handle(const unsigned char value[])
     if (dp_type != download_cmd[index][1])
     {
         //Error message
-        return FALSE;
+        return TY_FALSE;
     }
     else
     {

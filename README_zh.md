@@ -221,7 +221,7 @@ unsigned char dp_process(unsigned char dpid,const unsigned char value[], unsigne
 
     default:break;
   }
-  return SUCCESS;
+  return TY_SUCCESS;
 }
 ```
 

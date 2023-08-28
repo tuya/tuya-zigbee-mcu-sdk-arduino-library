@@ -31,11 +31,11 @@ extern TuyaUart tuya_uart;
 #define PID_LEN 8
 #define VER_LEN 5
 
-TUYA_GLOBAL_EXTERN volatile unsigned char stop_update_flag; //ENABLE:Stop all data uploads   DISABLE:Restore all data uploads
+TUYA_GLOBAL_EXTERN volatile unsigned char stop_update_flag; //TY_ENABLE:Stop all data uploads   TY_DISABLE:Restore all data uploads
 
 #ifndef ZIGBEE_CONTROL_SELF_MODE
-TUYA_GLOBAL_EXTERN volatile unsigned char reset_zigbee_flag;   //Reset zigbee flag (TRUE: successful / FALSE: failed)
-TUYA_GLOBAL_EXTERN volatile unsigned char set_zigbeemode_flag; //Set the zigbee working mode flag (TRUE: Success / FALSE: Failed)
+TUYA_GLOBAL_EXTERN volatile unsigned char reset_zigbee_flag;   //Reset zigbee flag (TY_TRUE: successful / TY_FALSE: failed)
+TUYA_GLOBAL_EXTERN volatile unsigned char set_zigbeemode_flag; //Set the zigbee working mode flag (TY_TRUE: Success / TY_FALSE: Failed)
 TUYA_GLOBAL_EXTERN volatile unsigned char zigbee_work_state;   //zigbee module current working status
 #endif
 

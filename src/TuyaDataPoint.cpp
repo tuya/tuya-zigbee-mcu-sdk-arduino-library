@@ -38,8 +38,8 @@ unsigned char TuyaDataPoint::mcu_dp_raw_update(unsigned char dpid, const unsigne
 {
     unsigned short send_len = 0;
 
-    if (stop_update_flag == ENABLE)
-        return SUCCESS;
+    if (stop_update_flag == TY_ENABLE)
+        return TY_SUCCESS;
     //
     send_len = tuya_uart.set_zigbee_uart_byte(send_len, dpid);
     send_len = tuya_uart.set_zigbee_uart_byte(send_len, DP_TYPE_RAW);
@@ -51,15 +51,15 @@ unsigned char TuyaDataPoint::mcu_dp_raw_update(unsigned char dpid, const unsigne
 
     tuya_uart.zigbee_uart_write_frame(STATE_UPLOAD_ASYNC_CMD, send_len);
 
-    return SUCCESS;
+    return TY_SUCCESS;
 }
 
 unsigned char TuyaDataPoint::mcu_dp_bool_update(unsigned char dpid, unsigned char value)
 {
     unsigned short send_len = 0;
 
-    if (stop_update_flag == ENABLE)
-        return SUCCESS;
+    if (stop_update_flag == TY_ENABLE)
+        return TY_SUCCESS;
 
     send_len = tuya_uart.set_zigbee_uart_byte(send_len, dpid);
     send_len = tuya_uart.set_zigbee_uart_byte(send_len, DP_TYPE_BOOL);
@@ -67,9 +67,9 @@ unsigned char TuyaDataPoint::mcu_dp_bool_update(unsigned char dpid, unsigned cha
     send_len = tuya_uart.set_zigbee_uart_byte(send_len, 0);
     send_len = tuya_uart.set_zigbee_uart_byte(send_len, 1);
     //
-    if (value == FALSE)
+    if (value == TY_FALSE)
     {
-        send_len = tuya_uart.set_zigbee_uart_byte(send_len, FALSE);
+        send_len = tuya_uart.set_zigbee_uart_byte(send_len, TY_FALSE);
     }
     else
     {
@@ -78,15 +78,15 @@ unsigned char TuyaDataPoint::mcu_dp_bool_update(unsigned char dpid, unsigned cha
 
     tuya_uart.zigbee_uart_write_frame(STATE_UPLOAD_ASYNC_CMD, send_len);
 
-    return SUCCESS;
+    return TY_SUCCESS;
 }
 
 unsigned char TuyaDataPoint::mcu_dp_value_update(unsigned char dpid, unsigned long value)
 {
     unsigned short send_len = 0;
 
-    if (stop_update_flag == ENABLE)
-        return SUCCESS;
+    if (stop_update_flag == TY_ENABLE)
+        return TY_SUCCESS;
 
     send_len = tuya_uart.set_zigbee_uart_byte(send_len, dpid);
     send_len = tuya_uart.set_zigbee_uart_byte(send_len, DP_TYPE_VALUE);
@@ -101,15 +101,15 @@ unsigned char TuyaDataPoint::mcu_dp_value_update(unsigned char dpid, unsigned lo
 
     tuya_uart.zigbee_uart_write_frame(STATE_UPLOAD_ASYNC_CMD, send_len);
 
-    return SUCCESS;
+    return TY_SUCCESS;
 }
 
 unsigned char TuyaDataPoint::mcu_dp_string_update(unsigned char dpid, const unsigned char value[], unsigned short len)
 {
     unsigned short send_len = 0;
 
-    if (stop_update_flag == ENABLE)
-        return SUCCESS;
+    if (stop_update_flag == TY_ENABLE)
+        return TY_SUCCESS;
     //
     send_len = tuya_uart.set_zigbee_uart_byte(send_len, dpid);
     send_len = tuya_uart.set_zigbee_uart_byte(send_len, DP_TYPE_STRING);
@@ -121,15 +121,15 @@ unsigned char TuyaDataPoint::mcu_dp_string_update(unsigned char dpid, const unsi
 
     tuya_uart.zigbee_uart_write_frame(STATE_UPLOAD_ASYNC_CMD, send_len);
 
-    return SUCCESS;
+    return TY_SUCCESS;
 }
 
 unsigned char TuyaDataPoint::mcu_dp_enum_update(unsigned char dpid, unsigned char value)
 {
     unsigned short send_len = 0;
 
-    if (stop_update_flag == ENABLE)
-        return SUCCESS;
+    if (stop_update_flag == TY_ENABLE)
+        return TY_SUCCESS;
 
     send_len = tuya_uart.set_zigbee_uart_byte(send_len, dpid);
     send_len = tuya_uart.set_zigbee_uart_byte(send_len, DP_TYPE_ENUM);
@@ -141,15 +141,15 @@ unsigned char TuyaDataPoint::mcu_dp_enum_update(unsigned char dpid, unsigned cha
 
     tuya_uart.zigbee_uart_write_frame(STATE_UPLOAD_ASYNC_CMD, send_len);
 
-    return SUCCESS;
+    return TY_SUCCESS;
 }
 
 unsigned char TuyaDataPoint::mcu_dp_fault_update(unsigned char dpid, unsigned long value)
 {
     unsigned short send_len = 0;
 
-    if (stop_update_flag == ENABLE)
-        return SUCCESS;
+    if (stop_update_flag == TY_ENABLE)
+        return TY_SUCCESS;
 
     send_len = tuya_uart.set_zigbee_uart_byte(send_len, dpid);
     send_len = tuya_uart.set_zigbee_uart_byte(send_len, DP_TYPE_FAULT);
@@ -178,5 +178,5 @@ unsigned char TuyaDataPoint::mcu_dp_fault_update(unsigned char dpid, unsigned lo
 
     tuya_uart.zigbee_uart_write_frame(STATE_UPLOAD_ASYNC_CMD, send_len);
 
-    return SUCCESS;
+    return TY_SUCCESS;
 }
