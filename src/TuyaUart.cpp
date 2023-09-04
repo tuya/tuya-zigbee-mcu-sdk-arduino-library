@@ -33,7 +33,7 @@ TuyaUart::~TuyaUart(void)
 */
 void TuyaUart::seq_num_set(unsigned char seq_num)
 {
-   global_seq_num = seq_num;
+    global_seq_num = seq_num;
 }
 unsigned short TuyaUart::seq_num_get(void)
 {
@@ -46,7 +46,7 @@ unsigned short TuyaUart::seq_num_get(void)
 * @param[in] {void}
 * @return void
 */
-unsigned char  TuyaUart::get_queue_total_data(void)
+unsigned char TuyaUart::get_queue_total_data(void)
 {
     if(queue_total_data == 0)
     {
@@ -63,7 +63,7 @@ unsigned char  TuyaUart::get_queue_total_data(void)
 */
 void TuyaUart::uart_transmit_output(unsigned char value)
 {
-    Serial.write(value);
+    write(value);
 }
 
 /**
@@ -76,12 +76,12 @@ unsigned char TuyaUart::uart_receive_input(unsigned char data)
     if (1 == queue_out - queue_in)
     {
         //UART receive buffer is full
-        return ERROR;
+        return TY_ERROR;
     }
     else if ((queue_in > queue_out) && ((queue_in - queue_out) >= sizeof(tuya_uart.zigbee_data_process_buf)))
     {
         //UART receive buffer is full
-        return ERROR;
+        return TY_ERROR;
     }
     else
     {
@@ -93,7 +93,7 @@ unsigned char TuyaUart::uart_receive_input(unsigned char data)
 
         *queue_in++ = data;
          queue_total_data++;
-         return SUCCESS;
+         return TY_SUCCESS;
     }
 }
 
@@ -200,7 +200,7 @@ unsigned short TuyaUart::set_zigbee_uart_buffer(unsigned short dest, const unsig
 */
 void TuyaUart::zigbee_uart_write_data(unsigned char *in, unsigned short len)
 {
-    if ((NULL == in) || (0 == len))
+    if ((TY_NULL == in) || (0 == len))
     {
         return;
     }
@@ -246,13 +246,13 @@ void TuyaUart::zigbee_uart_write_frame(unsigned char fr_type, unsigned short len
 
 void TuyaUart::set_serial(HardwareSerial *serial)
 {
-    _isHWSerial = TRUE;
+    _isHWSerial = TY_TRUE;
     _port = serial;
 }
 
 void TuyaUart::set_serial(SoftwareSerial *serial)
 {
-    _isHWSerial = FALSE;
+    _isHWSerial = TY_FALSE;
     _port = serial;
 }
 

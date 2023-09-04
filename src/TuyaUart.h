@@ -61,7 +61,7 @@ public:
 private:
     volatile unsigned char *queue_in;
     volatile unsigned char *queue_out;
-    volatile unsigned char *queue_total_data;
+    volatile unsigned char queue_total_data;
     Stream *_port;
 };
 
